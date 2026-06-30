@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+
+ollama
+
+qdrant-client
+
+pypdf
+
+numpy
+
+requests
