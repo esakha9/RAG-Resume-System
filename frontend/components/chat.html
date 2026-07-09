@@ -1,0 +1,35 @@
+<!--
+    Component: AI Chat
+    Reference partial mirrored inside .dashboard-middle-row. This is
+    the largest section of the dashboard per the design brief.
+    js/chat.js renders messages into .chat-message-history and reads/
+    writes the form below.
+-->
+<section class="ai-chat-card" aria-labelledby="ai-chat-heading">
+
+    <h2 class="card-header" id="ai-chat-heading">
+        AI Resume Chat
+        <span class="status-pill status-pill--pending" data-chat-status>Awaiting resume</span>
+    </h2>
+
+    <div class="chat-message-history scrollbar-quiet" role="log" aria-live="polite">
+        <div class="chat-empty-state">
+            <svg class="chat-empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 12a8.5 8.5 0 0 1-12.9 7.2L3 21l1.9-5A8.5 8.5 0 1 1 21 12z"/></svg>
+            <span class="chat-empty-state-title">Nothing to discuss yet</span>
+            <p>Upload a resume above, then ask things like "What was their most recent role?" or "Do they have Python experience?"</p>
+        </div>
+    </div>
+
+    <form class="chat-input-area">
+        <textarea
+            class="chat-input-field"
+            placeholder="Upload a resume to start asking questions…"
+            rows="1"
+            maxlength="800"
+            aria-label="Ask a question about the resume"></textarea>
+        <button class="send-question-button" type="submit" aria-label="Send question">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+    </form>
+
+</section>

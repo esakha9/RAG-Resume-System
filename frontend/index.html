@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload a resume and ask an AI assistant questions about it, backed by a retrieval-augmented generation pipeline.">
+
+    <title>Resume RAG Assistant — Dashboard</title>
+
+    <!-- Global -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- Layout -->
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <!-- Components -->
+    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/footer.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body data-page="dashboard">
+
+<div class="application-container">
+
+    <!-- ========================================= -->
+    <!-- Sidebar (see components/sidebar.html)      -->
+    <!-- ========================================= -->
+
+    <aside class="application-sidebar" data-collapsed="false">
+
+        <div class="sidebar-brand-container">
+            <div class="brand-logo" aria-hidden="true"></div>
+            <h2 class="brand-name">Resume RAG</h2>
+        </div>
+
+        <nav class="sidebar-navigation" aria-label="Primary">
+            <ul class="navigation-menu">
+                <li>
+                    <a class="navigation-menu-item" data-page="dashboard" href="index.html" aria-current="page">
+                        <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+                        <span class="navigation-menu-label">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="navigation-menu-item" data-page="upload" href="#upload-resume">
+                        <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                        <span class="navigation-menu-label">Upload Resume</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="navigation-menu-item" data-page="history" href="pages/history.html">
+                        <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                        <span class="navigation-menu-label">History</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="navigation-menu-item" data-page="settings" href="pages/settings.html">
+                        <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.96 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.96a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9c.2.63.75 1.4 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1.04z"/></svg>
+                        <span class="navigation-menu-label">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="sidebar-collapse-button" type="button" aria-label="Collapse sidebar">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+
+        <div class="sidebar-user-profile">
+            <div class="profile-image" aria-hidden="true">JD</div>
+            <div class="profile-information">
+                <span class="profile-name">Esa Khan</span>
+                <span class="profile-role">Free plan</span>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- ========================================= -->
+    <!-- Main Content                               -->
+    <!-- ========================================= -->
+
+    <main class="application-main-content">
+
+        <!-- Header (see components/header.html) -->
+
+        <header class="dashboard-header">
+
+            <button class="mobile-nav-toggle" type="button" aria-label="Open navigation" data-mobile-nav-toggle>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+
+            <div class="header-title-container">
+                <h1 class="dashboard-title">Dashboard</h1>
+                <p class="dashboard-subtitle">Upload a resume and ask the assistant anything about it.</p>
+            </div>
+
+            <div class="header-action-container">
+
+                <button class="theme-toggle-button" type="button" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+                </button>
+
+                <button class="notification-button" type="button" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+                    <span class="notification-badge" aria-hidden="true"></span>
+                </button>
+
+                <button class="profile-button" type="button" aria-label="Account menu">
+                    <span class="profile-button-avatar" aria-hidden="true">JD</span>
+                    <span class="profile-button-name">Jordan</span>
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- Dashboard Body -->
+
+        <section class="dashboard-body">
+
+            <!-- Top Row: Upload (see components/upload.html) -->
+
+            <section class="dashboard-top-row">
+
+                <section class="resume-upload-card" id="upload-resume" aria-labelledby="upload-resume-heading">
+
+                    <h2 class="card-header" id="upload-resume-heading">Upload Resume</h2>
+
+                    <div class="resume-upload-dropzone" data-state="empty" role="button" tabindex="0" aria-label="Upload your resume">
+
+                        <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+
+                        <p class="dropzone-instruction">
+                            <span class="dropzone-instruction-accent">Click to upload</span> or drag and drop your resume
+                        </p>
+
+                        <p class="dropzone-file-types">PDF, DOC, or DOCX — up to 10MB</p>
+
+                        <span class="button-secondary upload-browse-button">Browse files</span>
+
+                        <div class="selected-file-summary">
+                            <span class="file-summary-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                            </span>
+                            <div class="file-summary-details">
+                                <span class="selected-file-name">—</span>
+                                <span class="selected-file-size">—</span>
+                            </div>
+                            <button class="file-summary-remove-button" type="button" aria-label="Remove file">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="upload-progress-track" aria-hidden="true">
+                            <div class="upload-progress-fill"></div>
+                        </div>
+
+                        <p class="upload-status-message" role="status"></p>
+
+                        <input class="resume-upload-input" type="file" accept=".pdf,.doc,.docx" aria-hidden="true">
+
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- Middle Row: Chat (see components/chat.html) — the largest section -->
+
+            <section class="dashboard-middle-row">
+
+                <section class="ai-chat-card" aria-labelledby="ai-chat-heading">
+
+                    <h2 class="card-header" id="ai-chat-heading">
+                        AI Resume Chat
+                        <span class="status-pill status-pill--pending" data-chat-status>Awaiting resume</span>
+                    </h2>
+
+                    <div class="chat-message-history scrollbar-quiet" role="log" aria-live="polite">
+                        <div class="chat-empty-state">
+                            <svg class="chat-empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 12a8.5 8.5 0 0 1-12.9 7.2L3 21l1.9-5A8.5 8.5 0 1 1 21 12z"/></svg>
+                            <span class="chat-empty-state-title">Nothing to discuss yet</span>
+                            <p>Upload a resume above, then ask things like "What was their most recent role?" or "Do they have Python experience?"</p>
+                        </div>
+                    </div>
+
+                    <form class="chat-input-area">
+                        <textarea
+                            class="chat-input-field"
+                            placeholder="Upload a resume to start asking questions…"
+                            rows="1"
+                            maxlength="800"
+                            aria-label="Ask a question about the resume"></textarea>
+                        <button class="send-question-button" type="submit" aria-label="Send question">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                    </form>
+
+                </section>
+
+            </section>
+
+            <!-- Bottom Row: Processing status + Retrieved context -->
+
+            <section class="dashboard-bottom-row">
+
+                <!-- Processing -->
+
+                <section class="resume-processing-card" aria-labelledby="processing-heading">
+
+                    <h2 class="card-header" id="processing-heading">Resume Processing</h2>
+
+                    <div class="processing-status-content">
+
+                        <div class="processing-step" data-step="resume" data-state="pending">
+                            <span class="processing-step-label">
+                                <span class="processing-step-icon" aria-hidden="true"></span>
+                                Resume parsed
+                            </span>
+                        </div>
+
+                        <div class="processing-step" data-step="embedding" data-state="pending">
+                            <span class="processing-step-label">
+                                <span class="processing-step-icon" aria-hidden="true"></span>
+                                Embeddings generated
+                            </span>
+                        </div>
+
+                        <div class="processing-step" data-step="vector" data-state="pending">
+                            <span class="processing-step-label">
+                                <span class="processing-step-icon" aria-hidden="true"></span>
+                                Vector database indexed
+                            </span>
+                        </div>
+
+                        <div class="processing-step" data-step="llm" data-state="pending">
+                            <span class="processing-step-label">
+                                <span class="processing-step-icon" aria-hidden="true"></span>
+                                Assistant ready
+                            </span>
+                        </div>
+
+                        <div class="processing-overall-bar" aria-hidden="true">
+                            <div class="processing-overall-bar-fill"></div>
+                        </div>
+
+                        <div class="processing-overall-label">
+                            <span>Overall progress</span>
+                            <span class="text-mono processing-overall-percent">0%</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Retrieved Chunks -->
+
+                <section class="retrieval-results-card" aria-labelledby="retrieval-heading">
+
+                    <h2 class="card-header" id="retrieval-heading">
+                        Retrieved Context
+                        <span class="card-header-eyebrow text-mono" style="margin: 0;">Evidence trail</span>
+                    </h2>
+
+                    <div class="retrieved-context-list scrollbar-quiet">
+                        <p class="retrieved-context-empty">Ask a question to see the supporting passages the assistant used.</p>
+                    </div>
+
+                </section>
+
+            </section>
+
+        </section>
+
+        <!-- Footer (see components/footer.html) -->
+
+        <footer class="application-footer">
+
+            <div class="footer-brand">
+                <span>Resume RAG Assistant</span>
+                <span class="footer-version text-mono">v1.0.0</span>
+            </div>
+
+            <nav class="footer-links" aria-label="Footer">
+                <span>&copy; 2026 Resume RAG Assistant. All rights reserved.</span>
+            </nav>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- JavaScript -->
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

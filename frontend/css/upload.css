@@ -1,0 +1,195 @@
+/* =============================================================
+   UPLOAD — Resume upload card and dropzone states
+   ============================================================= */
+
+.resume-upload-dropzone {
+    margin: 0 var(--space-5) var(--space-5);
+    border: 1.5px dashed var(--color-border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    transition: border-color var(--duration-fast) var(--ease-standard),
+                background-color var(--duration-fast) var(--ease-standard);
+    cursor: pointer;
+}
+
+.resume-upload-dropzone:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+}
+
+.resume-upload-dropzone[data-state="dragging"] {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+    border-style: solid;
+}
+
+.resume-upload-dropzone[data-state="uploading"],
+.resume-upload-dropzone[data-state="success"],
+.resume-upload-dropzone[data-state="error"] {
+    cursor: default;
+}
+
+.resume-upload-dropzone[data-state="error"] {
+    border-color: var(--color-danger);
+    background: var(--color-danger-soft);
+}
+
+.dropzone-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--color-ink-faint);
+}
+
+.resume-upload-dropzone[data-state="dragging"] .dropzone-icon,
+.resume-upload-dropzone:hover .dropzone-icon {
+    color: var(--color-accent);
+}
+
+.dropzone-instruction {
+    font-size: var(--text-sm);
+    color: var(--color-ink-soft);
+}
+
+.dropzone-instruction-accent {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.dropzone-file-types {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+}
+
+.upload-browse-button {
+    margin-top: var(--space-1);
+}
+
+.resume-upload-input {
+    display: none;
+}
+
+/* ---------- Selected file summary ---------- */
+
+.selected-file-summary {
+    display: none;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-paper-sunken);
+    border-radius: var(--radius-md);
+    width: 100%;
+}
+
+.resume-upload-dropzone[data-state="uploading"] .selected-file-summary,
+.resume-upload-dropzone[data-state="success"] .selected-file-summary,
+.resume-upload-dropzone[data-state="error"] .selected-file-summary {
+    display: flex;
+}
+
+.resume-upload-dropzone[data-state="uploading"] .dropzone-icon,
+.resume-upload-dropzone[data-state="success"] .dropzone-icon,
+.resume-upload-dropzone[data-state="error"] .dropzone-icon,
+.resume-upload-dropzone[data-state="uploading"] .dropzone-instruction,
+.resume-upload-dropzone[data-state="success"] .dropzone-instruction,
+.resume-upload-dropzone[data-state="error"] .dropzone-instruction,
+.resume-upload-dropzone[data-state="uploading"] .dropzone-file-types,
+.resume-upload-dropzone[data-state="success"] .dropzone-file-types,
+.resume-upload-dropzone[data-state="error"] .dropzone-file-types,
+.resume-upload-dropzone[data-state="uploading"] .upload-browse-button,
+.resume-upload-dropzone[data-state="success"] .upload-browse-button,
+.resume-upload-dropzone[data-state="error"] .upload-browse-button {
+    display: none;
+}
+
+.file-summary-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-summary-details {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.selected-file-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.selected-file-size {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+}
+
+.file-summary-remove-button {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink-faint);
+    transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.file-summary-remove-button:hover {
+    background: var(--color-paper-raised);
+    color: var(--color-danger);
+}
+
+/* ---------- Upload progress ---------- */
+
+.upload-progress-track {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-border);
+    overflow: hidden;
+    margin-top: var(--space-1);
+}
+
+.upload-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    transition: width var(--duration-base) var(--ease-standard);
+}
+
+.upload-status-message {
+    width: 100%;
+    text-align: left;
+    font-size: var(--text-xs);
+    color: var(--color-ink-faint);
+    margin-top: var(--space-1);
+}
+
+.resume-upload-dropzone[data-state="success"] .upload-status-message {
+    color: var(--color-accent);
+}
+
+.resume-upload-dropzone[data-state="error"] .upload-status-message {
+    color: var(--color-danger);
+}

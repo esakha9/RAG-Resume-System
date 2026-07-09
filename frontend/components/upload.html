@@ -1,0 +1,49 @@
+<!--
+    Component: Resume Upload Card
+    Reference partial mirrored inside .dashboard-top-row on the
+    dashboard page. States are toggled via data-state on
+    .resume-upload-dropzone by js/upload.js: empty | dragging |
+    uploading | success | error.
+-->
+<section class="resume-upload-card" id="upload-resume" aria-labelledby="upload-resume-heading">
+
+    <h2 class="card-header" id="upload-resume-heading">
+        Upload Resume
+    </h2>
+
+    <div class="resume-upload-dropzone" data-state="empty" role="button" tabindex="0" aria-label="Upload your resume">
+
+        <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+
+        <p class="dropzone-instruction">
+            <span class="dropzone-instruction-accent">Click to upload</span> or drag and drop your resume
+        </p>
+
+        <p class="dropzone-file-types">PDF, DOC, or DOCX — up to 10MB</p>
+
+        <span class="button-secondary upload-browse-button">Browse files</span>
+
+        <div class="selected-file-summary">
+            <span class="file-summary-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </span>
+            <div class="file-summary-details">
+                <span class="selected-file-name">—</span>
+                <span class="selected-file-size">—</span>
+            </div>
+            <button class="file-summary-remove-button" type="button" aria-label="Remove file">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="upload-progress-track" aria-hidden="true">
+            <div class="upload-progress-fill"></div>
+        </div>
+
+        <p class="upload-status-message" role="status"></p>
+
+        <input class="resume-upload-input" type="file" accept=".pdf,.doc,.docx" aria-hidden="true">
+
+    </div>
+
+</section>

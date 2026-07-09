@@ -1,0 +1,57 @@
+<!--
+    Component: Application Sidebar
+    Mirrors the markup inlined inside <aside class="application-sidebar">
+    on every page (index.html, pages/dashboard.html, pages/history.html,
+    pages/settings.html). Kept here as the canonical reference partial;
+    each page inlines it directly since the project ships without a
+    build step or template engine.
+-->
+<aside class="application-sidebar" data-collapsed="false">
+
+    <div class="sidebar-brand-container">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <h2 class="brand-name">Resume RAG</h2>
+    </div>
+
+    <nav class="sidebar-navigation" aria-label="Primary">
+        <ul class="navigation-menu">
+            <li>
+                <a class="navigation-menu-item" data-page="dashboard" href="index.html">
+                    <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+                    <span class="navigation-menu-label">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="navigation-menu-item" data-page="upload" href="index.html#upload-resume">
+                    <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4L7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                    <span class="navigation-menu-label">Upload Resume</span>
+                </a>
+            </li>
+            <li>
+                <a class="navigation-menu-item" data-page="history" href="pages/history.html">
+                    <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    <span class="navigation-menu-label">History</span>
+                </a>
+            </li>
+            <li>
+                <a class="navigation-menu-item" data-page="settings" href="pages/settings.html">
+                    <svg class="navigation-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.96 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.96a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9c.2.63.75 1.4 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1.04z"/></svg>
+                    <span class="navigation-menu-label">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <button class="sidebar-collapse-button" type="button" aria-label="Collapse sidebar">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+
+    <div class="sidebar-user-profile">
+        <div class="profile-image" aria-hidden="true">JD</div>
+        <div class="profile-information">
+            <span class="profile-name">Jordan Diaz</span>
+            <span class="profile-role">Free plan</span>
+        </div>
+    </div>
+
+</aside>

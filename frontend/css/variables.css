@@ -1,0 +1,123 @@
+/* =============================================================
+   VARIABLES — Design Tokens
+   "Dossier" system: the product reads resumes and produces
+   evidence, so the palette borrows from archival paper, ink,
+   and a wax-seal stamp rather than a generic SaaS gradient.
+   ============================================================= */
+
+:root {
+
+    /* ---------- Color: Light (default) ---------- */
+    --color-paper: #F5F4EF;
+    --color-paper-raised: #FFFFFF;
+    --color-paper-sunken: #ECEAE2;
+
+    --color-ink: #1B1F2A;
+    --color-ink-soft: #4A5063;
+    --color-ink-faint: #8A8F9E;
+
+    --color-border: #E1DFD5;
+    --color-border-strong: #CFCDBF;
+
+    --color-accent: #2A5C57;
+    --color-accent-strong: #1E4642;
+    --color-accent-soft: #E3ECEA;
+
+    --color-brass: #B8934A;
+    --color-brass-soft: #F3EAD4;
+
+    --color-danger: #B3432B;
+    --color-danger-soft: #F7E8E3;
+
+    --color-success: #2A5C57;
+    --color-success-soft: #E3ECEA;
+
+    --color-overlay: rgba(27, 31, 42, 0.45);
+
+    /* ---------- Typography ---------- */
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.9375rem;
+    --text-md: 1.0625rem;
+    --text-lg: 1.375rem;
+    --text-xl: 1.75rem;
+    --text-2xl: 2.25rem;
+
+    --leading-tight: 1.2;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.7;
+
+    /* ---------- Spacing scale ---------- */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-9: 4rem;
+
+    /* ---------- Radius ---------- */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+    --radius-full: 999px;
+
+    /* ---------- Shadow ---------- */
+    --shadow-sm: 0 1px 2px rgba(27, 31, 42, 0.06);
+    --shadow-md: 0 6px 20px rgba(27, 31, 42, 0.08);
+    --shadow-lg: 0 16px 40px rgba(27, 31, 42, 0.12);
+    --shadow-inset: inset 0 0 0 1px rgba(27, 31, 42, 0.04);
+
+    /* ---------- Motion ---------- */
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 120ms;
+    --duration-base: 220ms;
+    --duration-slow: 420ms;
+
+    /* ---------- Layout ---------- */
+    --sidebar-width: 248px;
+    --sidebar-width-collapsed: 76px;
+    --header-height: 76px;
+    --content-max-width: 1360px;
+}
+
+/* ---------- Dark theme overrides ---------- */
+[data-theme="dark"] {
+    --color-paper: #14171F;
+    --color-paper-raised: #1B1F29;
+    --color-paper-sunken: #10131A;
+
+    --color-ink: #EDECE6;
+    --color-ink-soft: #ABAFBD;
+    --color-ink-faint: #6C7180;
+
+    --color-border: #2A2E3A;
+    --color-border-strong: #383D4B;
+
+    --color-accent: #59B3A6;
+    --color-accent-strong: #7FD0C2;
+    --color-accent-soft: #1B2E2C;
+
+    --color-brass: #D9B76A;
+    --color-brass-soft: #2B2519;
+
+    --color-danger: #E08469;
+    --color-danger-soft: #2E1C17;
+
+    --color-success: #59B3A6;
+    --color-success-soft: #1B2E2C;
+
+    --color-overlay: rgba(0, 0, 0, 0.6);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+    --shadow-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
