@@ -1,9 +1,11 @@
-.venv
-
-__pycache__
-
+.venv/
+__pycache__/
 *.pyc
 
-.git
+.git/
+.gitignore
 
-logs/*.log
+logs/
+uploads/
+
+README.md

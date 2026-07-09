@@ -6,13 +6,15 @@ Resume Question Answering Pipeline
 Pipeline
 
 Question
- ↓
+    ↓
 Retrieve Context
- ↓
+    ↓
 Build Prompt
- ↓
+    ↓
 Generate Answer
 """
+
+import time
 
 from retrieval.retrieve import retriever
 from llm.generator import generator
@@ -26,53 +28,62 @@ class ResumeQAPipeline:
 
         debug("Starting Question Answering")
 
+        start = time.perf_counter()
+
+        # =====================================
+        # Retrieve relevant resume chunks
+        # =====================================
+        retrieval_start = time.perf_counter()
+
         chunks = retriever.get_context(question)
 
-        context = "\n\n".join(chunks)
-
-        answer = generator.generate(
-
-            question=question,
-
-            context=context
-
+        print(
+            f"Retrieval Time: {time.perf_counter() - retrieval_start:.2f} seconds"
         )
 
+        # Join chunks for the LLM prompt
+        context = "\n\n".join(
+        item["chunk"] for item in chunks
+         )
+
+        # =====================================
+        # Generate answer
+        # =====================================
+        llm_start = time.perf_counter()
+
+        answer = generator.generate(
+            question=question,
+            context=context
+        )
+
+        print(
+            f"LLM Time: {time.perf_counter() - llm_start:.2f} seconds"
+        )
+
+        print(
+            f"Total Time: {time.perf_counter() - start:.2f} seconds"
+        )
+
+        # =====================================
+        # Prepare context for frontend
+        # =====================================
+        context_response = []
+
+        for chunk in chunks:
+            context_response.append({
+                "chunk": chunk,
+                "score": 1.0
+            })
+
+        # =====================================
+        # API Response
+        # =====================================
         return {
-
             "question": question,
-
             "answer": answer,
-
-            "chunks_used": len(chunks)
-
+            "chunks_used": len(chunks),
+            "context": context_response
         }
 
 
 resume_qa_pipeline = ResumeQAPipeline()
-
-
-def ask(self, question):
-
-    start = time.perf_counter()
-
-    t1 = time.perf_counter()
-    chunks = retriever.get_context(question)
-    print(f"Retrieval: {time.perf_counter() - t1:.2f}s")
-
-    context = "\n\n".join(chunks)
-
-    t2 = time.perf_counter()
-    answer = generator.generate(
-        question=question,
-        context=context
-    )
-    print(f"LLM: {time.perf_counter() - t2:.2f}s")
-
-    print(f"Total: {time.perf_counter() - start:.2f}s")
-
-    return {
-        "question": question,
-        "answer": answer,
-        "chunks_used": len(chunks)
-    }
